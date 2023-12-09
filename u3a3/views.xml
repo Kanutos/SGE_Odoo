@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_videojuego_form" model="ir.ui.view">
+        <field name="name">view_videojuego_form</field>
+        <field name="model">u3a3.videojuego</field>
+        <field name="arch" type="xml">
+            <form string="Videojuego">
+                <sheet>
+                    <group>
+                        <field name="codigo"/>
+                        <field name="titulo"/>
+                        <field name="oferta"/>
+                        <field name="descuento" attrs="{'invisible': [('oferta', '=', False)]}"/>
+                        <field name="tipo"/>
+                        <field name="consola"/>
+                        <field name="precio"/>
+                        <field name="fecha_venta"/>
+                        <field name="personajes" widget='many2many_tags'/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+	<record id="action_videojuego" model="ir.actions.act_window">
+        <field name="name">Action Videojuego</field>
+        <field name="res_model">u3a3.videojuego</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="view_consola_tree" model="ir.ui.view">
+        <field name="name">view_consola_tree</field>
+        <field name="model">u3a3.consola</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="codigo"/>
+                <field name="nombre"/>
+                <field name="ano_lanzamiento"/>
+                <field name="descripcion"/>
+                <field name="videojuego" widget='many2many_tags'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_consola_form" model="ir.ui.view">
+        <field name="name">view_consola_form</field>
+        <field name="model">u3a3.consola</field>
+        <field name="arch" type="xml">
+            <form string="Consola">
+                <sheet>
+                    <group>
+                        <field name="codigo"/>
+                        <field name="nombre"/>
+                        <field name="ano_lanzamiento"/>
+                        <field name="descripcion"/>
+                        <field name="videojuego"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+	
+    <record id="action_consola" model="ir.actions.act_window">
+        <field name="name">Action Consola</field>
+        <field name="res_model">u3a3.consola</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_personaje_form" model="ir.ui.view">
+        <field name="name">view_personaje_form</field>
+        <field name="model">u3a3.personaje</field>
+        <field name="arch" type="xml">
+            <form string="Personaje">
+                <sheet>
+                    <group>
+                        <field name="nombre"/>
+                        <field name="descripcion"/>
+                        <field name="videojuego_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+	<record id="action_personaje" model="ir.actions.act_window">
+        <field name="name">Action Personaje</field>
+        <field name="res_model">u3a3.personaje</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_u3a3"
+        name="u3a3"
+        sequence="10"/>
+
+    <menuitem
+        id="menu_videojuego"
+        name="videojuego"
+        action="action_videojuego"
+        parent="menu_u3a3"
+        sequence="10"/>
+
+    <menuitem
+        id="menu_consola"
+        name="consola"
+        action="action_consola"
+        parent="menu_u3a3"
+        sequence="20"/>
+
+    <menuitem
+        id="menu_personaje"
+        name="personaje"
+        action="action_personaje"
+        parent="menu_u3a3"
+        sequence="30"/>
+
+</odoo>
