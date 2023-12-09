@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="videojuego_action" model="ir.actions.act_window">
+		<field name="name">Action videojuego</field>
+		<field name="res_model">u3a2.videojuego</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<record id="view_videojuego_tree" model="ir.ui.view" >
+		<field name="name">videojuego.tree</field>
+		<field name="model">u3a2.videojuego</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="codigo"/>
+				<field name="titulo"/>
+				<field name="oferta"/>
+				<field name="tipo"/>
+				<field name="consola"/>
+				<field name="precio"/>
+				<field name="fecha_venta"/>
+			</tree>
+		</field>
+	</record>
+	<record id="videojuego_form" model="ir.ui.view" >
+		<field name="name">field_value</field>
+		<field name="model">u3a2.videojuego</field>
+		<field name="arch" type="xml">
+			<form string="videojuego">
+				<sheet>
+					<group>
+						<field name="codigo"/>
+						<field name="titulo"/>
+						<field name="oferta"/>
+						<field name="tipo"/>
+						<field name="consola"/>
+						<field name="precio"/>
+						<field name="fecha_venta"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="consola_action" model="ir.actions.act_window">
+		<field name="name">Action consola</field>
+		<field name="res_model">u3a2.consola</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<record id="view_consola_tree" model="ir.ui.view" >
+		<field name="name">consola.tree</field>
+		<field name="model">u3a2.consola</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="codigo"/>
+				<field name="nombre"/>
+				<field name="ano_lanzamiento"/>
+				<field name="descripcion"/>
+				<field name="videojuego" widget='many2many_tags'/>
+			</tree>
+		</field>
+	</record>
+	<record id="consola_form" model="ir.ui.view" >
+		<field name="name">field_value</field>
+		<field name="model">u3a2.consola</field>
+		<field name="arch" type="xml">
+			<form string="consola">
+				<sheet>
+					<group>
+						<field name="codigo"/>
+						<field name="nombre"/>
+						<field name="ano_lanzamiento"/>
+						<field name="descripcion"/>
+						<field name="videojuego"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<menuitem
+		id="u3a2"
+		name="u3a2"
+		sequence="10"/>
+	<menuitem
+		id="videojuego"
+		name="videojuego"
+		action="videojuego_action"
+		parent="u3a2"
+		sequence="10"/>
+	<menuitem
+		id="consola"
+		name="consola"
+		action="consola_action"
+		parent="u3a2"
+		sequence="10"/>
+
+</odoo>
